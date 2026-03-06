@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="RestAssuredTestSuite" verbose="1">
+    <test name="RestAssuredTests">
+        <classes>
+            <class name="org.pratcticeOrg.Tests.Test.RestAssured.TestClass"/>
+        </classes>
+    </test>
+</suite>
