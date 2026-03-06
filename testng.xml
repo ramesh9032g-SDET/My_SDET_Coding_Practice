@@ -3,6 +3,7 @@
     <test name="RestAssuredTests">
         <classes>
             <class name="org.pratcticeOrg.Tests.Test.RestAssured.TestClass"/>
+            <class name="org.pratcticeOrg.Tests.Test.practice.ConsecutiveOnes"/>
         </classes>
     </test>
 </suite>
