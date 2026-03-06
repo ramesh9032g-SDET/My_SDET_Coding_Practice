@@ -9,9 +9,15 @@ pipeline {
             }
         }
 
+
+    tools {
+        maven 'Maven'
+        jdk 'JDK17'
+    }
+
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh '/opt/homebrew/bin/mvn clean install'
             }
         }
 
