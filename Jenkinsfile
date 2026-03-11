@@ -8,7 +8,7 @@ pipeline {
 
     environment {
             // This maps your Jenkins credential to a variable
-            RP_UUID = credentials('reportportal-uuid')
+            RP_UUID = credentials('RP_TOKEN')
             RP_ENDPOINT = 'http://host.docker.internal:9090'
             RP_PROJECT = 'your_project_name'
         }
