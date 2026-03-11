@@ -9,6 +9,8 @@ import org.pratcticeOrg.Tests.Helpers.Common.RequestBuilderHelper;
 import org.example.PojoClasses.Request.CreateEmpRequest;
 import org.example.PojoClasses.Response.PostEmpResponse;
 import org.example.PojoClasses.Response.GetEmpDetailsResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,6 +19,8 @@ import java.util.Map;
 
 @Slf4j
 public class TestClass extends BaseClass {
+
+    private static final Logger logger = LoggerFactory.getLogger(TestClass.class);
 
     //Given a  String "a5b1c3d6e2"
     //Print the output "aaaaabcccddddddee"
@@ -33,7 +37,7 @@ public class TestClass extends BaseClass {
             map.put(str.charAt(i), Character.getNumericValue(str.charAt(i+1)) );
         }
 
-        System.out.println(map);
+        logger.info(map.toString());
 
         for(Map.Entry<Character, Integer> entry : map.entrySet())
         {
@@ -43,7 +47,7 @@ public class TestClass extends BaseClass {
             }
         }
 
-        System.out.println(builder.toString());
+        logger.info(builder.toString());
     }
 
     @Test

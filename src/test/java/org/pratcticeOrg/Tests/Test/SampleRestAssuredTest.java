@@ -3,12 +3,16 @@ package org.pratcticeOrg.Tests.Test;
 import groovy.util.logging.Slf4j;
 import io.restassured.response.Response;
 import org.example.PojoClasses.Request.CreateObjectsRequest;
+import org.pratcticeOrg.Tests.Test.Tekion.ReverseStringTest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
 @Slf4j
 public class SampleRestAssuredTest {
+    private static final Logger logger = LoggerFactory.getLogger(SampleRestAssuredTest.class);
 
 
     @Test
@@ -32,7 +36,7 @@ public class SampleRestAssuredTest {
                 .extract()
                 .response();
 
-        System.out.println(postResponse.getBody().asString());
+        logger.info(postResponse.getBody().asString());
 
 
 

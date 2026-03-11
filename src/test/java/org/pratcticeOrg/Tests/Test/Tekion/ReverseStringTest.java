@@ -1,15 +1,18 @@
 package org.pratcticeOrg.Tests.Test.Tekion;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 public class ReverseStringTest {
+    private static final Logger logger = LoggerFactory.getLogger(ReverseStringTest.class);
 
     @Test
     public void stringReverse()
     {
         String str = "i am raj";
-        System.out.println(str);
+        logger.info(str);
         int left = 0 ;
         StringBuilder builder = new StringBuilder();
 
@@ -25,7 +28,7 @@ public class ReverseStringTest {
                 //break;
             }
         }
-        System.out.println(builder);
+        logger.info(String.valueOf(builder));
 
     }
 
@@ -36,13 +39,13 @@ public class ReverseStringTest {
         double rounded = Math.round(num / 100.0f) * 100;
        // System.out.println(rounded);
         if ((rounded / 100) % 2 != 0)
-            System.out.println(rounded);
+            logger.info(String.valueOf(rounded));
 
         double lowerOdd = rounded - 100;
         double upperOdd = rounded + 100;
 
         res =  (num - lowerOdd <= upperOdd - num) ? lowerOdd : upperOdd;
-        System.out.println(res);
+        logger.info(String.valueOf(res));
 
         //
     }

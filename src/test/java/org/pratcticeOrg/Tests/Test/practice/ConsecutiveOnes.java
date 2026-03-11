@@ -3,11 +3,15 @@ package org.pratcticeOrg.Tests.Test.practice;
 import org.example.Enums.Trade;
 import org.example.Enums.Transaction;
 import org.pratcticeOrg.Tests.Helpers.Common.DataProviderClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import java.util.*;
 
 public class ConsecutiveOnes {
+
+    private static final Logger logger = LoggerFactory.getLogger(ConsecutiveOnes.class);
 
     // PHONEPE - Round1
     @Test (dataProvider = "getConsecutiveOnesDataProvider", dataProviderClass = DataProviderClass.class)
@@ -17,7 +21,7 @@ public class ConsecutiveOnes {
         {
             if(arr[i] == arr[i+1] && arr[i]==1){ count++; }
         }
-        System.out.println("consecutiveOne's count is :" + count);
+        logger.info("consecutiveOne's count is :{}", count);
     }
 
     // PHONEPE - Round1
@@ -35,7 +39,7 @@ public class ConsecutiveOnes {
             else
                 currentCount = 0;
         }
-        System.out.println("consecutiveOne's count is :" + maxCount);
+        logger.info("consecutiveOne's count is :{}", maxCount);
     }
 
     // PHONEPE - Round1
@@ -49,11 +53,11 @@ public class ConsecutiveOnes {
 
         for (char c : charArray)
             if(charCount.get(c)==1) {
-                System.out.println("Unique character is : " + c);
+                logger.info("Unique character is : {}", c);
                 return;
             }
         //return '\0';
-        System.out.println("Unique character is : " + '\0');
+        logger.info("Unique character is : " + '\0');
 
     }
 
@@ -71,7 +75,7 @@ public class ConsecutiveOnes {
                 m=i;
 
         }
-        System.out.println("Distance b/w word's is :" +(m-k));
+        logger.info("Distance b/w word's is :{}", m - k);
     }
 
     @Test
@@ -84,12 +88,12 @@ public class ConsecutiveOnes {
             for(int j = i+1 ; j <= S.length-1 ; j++ )
             {
                 if(S[i].equalsIgnoreCase(S[j]) && ! S[i].equals("")) {
-                    System.out.println("the matching words are: " + S[i] + " " + S[j]);
+                    logger.info("the matching words are: {} {}", S[i], S[j]);
                     count = j-i;
                 }
             }
         }
-        System.out.println("Distance b/w word's is :" +count);
+        logger.info("Distance b/w word's is :{}" +count);
     }
 
     // Zeta  - Round1
@@ -109,8 +113,8 @@ public class ConsecutiveOnes {
                             for(int y = j+1 ; y <= seq.length-1 ; y++)
                             {
                                 if(arr[x].equalsIgnoreCase(seq[y])) {
-                                    System.out.println("First Sequence string : " + arr[i]);
-                                    System.out.println("Second Sequence string : " + arr[x]);
+                                    logger.info("First Sequence string : {}", arr[i]);
+                                    logger.info("Second Sequence string : {}", arr[x]);
                                 }
                             }
                         }
@@ -119,7 +123,7 @@ public class ConsecutiveOnes {
             }
         }
         else
-            System.out.println("Give me valid array");
+            logger.info("Give me valid array");
     }
 
     @Test (dataProvider = "fibonacciCheckerDataProvider", dataProviderClass = DataProviderClass.class)
@@ -128,7 +132,7 @@ public class ConsecutiveOnes {
        // for(int k = 1 ; i <= num ; k++)
         while(i <= num)
         {
-            System.out.println(i);
+            logger.info(String.valueOf(i));
             temp = i+j;
             i = j;
             j = temp;
@@ -138,7 +142,7 @@ public class ConsecutiveOnes {
     @Test (dataProvider = "removeDuplicateCharsDataProvider", dataProviderClass = DataProviderClass.class)
     public static void removeDuplicateChars(String str) {
         // "my name is Ramesh"
-        System.out.println("Given String is  : " + str);
+        logger.info("Given String is  : {}", str);
         char[] charArray = str.toCharArray();
         HashMap<Character,Integer> charCount = new HashMap<>();
         String uniqueChar = "", duplicateChars = "";
@@ -155,8 +159,8 @@ public class ConsecutiveOnes {
             else if(charCount.get(c) > 1)
                 duplicateChars += String.valueOf(c);
         }
-        System.out.println("Unique char's are : " + uniqueChar);
-        System.out.println("Duplicate char's are : " + duplicateChars);
+        logger.info("Unique char's are : {}", uniqueChar);
+        logger.info("Duplicate char's are : {}", duplicateChars);
 
     }
 
@@ -165,12 +169,12 @@ public class ConsecutiveOnes {
       // {42,65,3,78,56,12} -> 12,56,78
         int len = arr.length;
         int maxEle = arr[len-1];
-        System.out.print(maxEle + " ");
+        logger.info("{} ", maxEle);
         for(int i = len-2 ; i >= 0 ; i--)
         {
             if(arr[i] >= maxEle){
                 maxEle = arr[i];
-                System.out.print(maxEle + " ");
+                logger.info("{} ", maxEle);
             }
         }
 
@@ -189,9 +193,9 @@ public class ConsecutiveOnes {
                 }
 
             }
-            System.out.println("After " + (i) + " iteration "+Arrays.toString(arr));
+            logger.info("After {} iteration {}", i, Arrays.toString(arr));
         }
-        System.out.println(Arrays.toString(arr));
+        logger.info(Arrays.toString(arr));
     }
 
     // BIG BASKET - Round - 2
@@ -214,7 +218,7 @@ public class ConsecutiveOnes {
                count = 1;
            }
        }
-       System.out.println("Run Length Encoding : " +builder);
+        logger.info("Run Length Encoding : {}", builder);
     }
 
     // BIG BASKET - Round - 2
@@ -233,7 +237,7 @@ public class ConsecutiveOnes {
             else
                 reverseString.append(' ');
         }
-        System.out.println(reverseString);
+        logger.info(String.valueOf(reverseString));
     }
 
     // // Games 24/7 - Round 1
@@ -246,7 +250,7 @@ public class ConsecutiveOnes {
 
         for(char c: ch)
             resultString.append( (Character.isLowerCase(c))? Character.toUpperCase(c) : Character.toLowerCase(c));
-        System.out.println(resultString);
+        logger.info(String.valueOf(resultString));
     }
 
     // Games 24/7 - Round 1
@@ -269,9 +273,9 @@ public class ConsecutiveOnes {
             map2.put(c, map2.getOrDefault(c, 0) + 1);
 
         if(map1.equals(map2))
-            System.out.println("Strings are equal");
+            logger.info("Strings are equal");
         else
-            System.out.println("Strings are Not equal");
+            logger.info("Strings are Not equal");
     }
 
     // RedBus - Round1
@@ -295,7 +299,7 @@ public class ConsecutiveOnes {
         for(Map.Entry<String , Integer> entry : pinCount.entrySet())
         {
             if(entry.getValue() > 1)
-                System.out.println("Pin code Occurrences are : " + entry.getKey() + " - " +  entry.getValue());
+                logger.info("Pin code Occurrences are : {} - {}", entry.getKey(), entry.getValue());
         }
     }
 
@@ -308,7 +312,7 @@ public class ConsecutiveOnes {
             reverseNum = reverseNum * 10 + num % 10 ;
             num = num/10;
         }
-        System.out.println(reverseNum);
+        logger.info(String.valueOf(reverseNum));
     }
 
     @Test (dataProvider = "reverseWordsDataProvider", dataProviderClass = DataProviderClass.class)
@@ -316,7 +320,7 @@ public class ConsecutiveOnes {
         // Hello there ! Ramesh Here -> ereH hsemaR ! ereht olleH
         // Hello there ! Ramesh Here -> olleH ereht ! hsemaR ereH
 
-        System.out.println("Given String is : "+ str);
+        logger.info("Given String is : {}", str);
         StringBuilder builder = new StringBuilder();
         String[] words = str.split(" ");
         for ( int i = words.length-1 ; i >= 0 ; i--)     // string reverse and word reverse
@@ -333,7 +337,7 @@ public class ConsecutiveOnes {
             }
             builder.append(" ");
         }
-        System.out.println("String Reverse is : "+builder.toString());
+        logger.info("String Reverse is : {}", builder.toString());
     }
 
     @Test (dataProvider = "pyramidPatternDataProvider", dataProviderClass = DataProviderClass.class)
@@ -342,29 +346,29 @@ public class ConsecutiveOnes {
         for(int i = 1 ; i <= num ; i++)
         {
             for(int j = num - i ; j > 0 ; j--)
-                System.out.print(" ");
+                logger.info(" ");
 
             for(int k = 1 ; k <= i ; k++)
-                System.out.print(" *");
+                logger.info(" *");
 
-            System.out.println();
+            logger.info("\n");
         }
 
         for(int x = num - 1 ; x >= 0 ; x-- )
         {
             for(int y = 1 ; y <= num - x ; y++ )
-                System.out.print(" ");
+                logger.info(" ");
 
             for( int z = 1 ; z <= x ; z++)
-                System.out.print(" *");
+                logger.info(" *");
 
-            System.out.println();
+            logger.info("\n");
         }
     }
 
     @Test (dataProvider = "swapAlternateCharsDataProvider", dataProviderClass = DataProviderClass.class)
     public static void swapAlternateChars(String str){
-        System.out.println("Given String is : "+ str);
+        logger.info("Given String is : "+ str);
         char[] ch = str.toCharArray();
         int len = ch.length;
          for(int i = 0 ; i < len/2 ; i += 2 )
@@ -373,7 +377,7 @@ public class ConsecutiveOnes {
              ch[i] = ch[len - 1 - i];
              ch[len - 1 - i] = temp;
          }
-         System.out.println(ch);
+         logger.info(Arrays.toString(ch));
     }
 
 
@@ -386,7 +390,7 @@ public class ConsecutiveOnes {
         //getConsecutiveOnes1(arr);
 
         // *** unique Character *** (PHONEPE - Round1 )
-        //System.out.println("unique Character is : " + uniqueCharacter("cookiecrumble"));
+        //logger.info("unique Character is : " + uniqueCharacter("cookiecrumble"));
 
         // *** string Frequency ***
         //stringFrequency();
@@ -465,7 +469,7 @@ public class ConsecutiveOnes {
          else
              count = 0;
         }
-        System.out.println("Consecutive Ones is : " + maxCount);
+        logger.info("Consecutive Ones is : {}", maxCount);
     }
 
     @Test (dataProvider = "uniqueCharacterDataProvider", dataProviderClass = DataProviderClass.class)
@@ -479,11 +483,11 @@ public class ConsecutiveOnes {
        for(char c : charArray)
        {
            if (charCount.get(c) <= 1) {
-               System.out.println("Unique Character is :" + c);
+               logger.info("Unique Character is :{}", c);
                return;
            }
        }
-       System.out.println("Unique Character is :" + '\0');
+       logger.info("Unique Character is :" + '\0');
     }
 
     @Test
@@ -499,7 +503,7 @@ public class ConsecutiveOnes {
             if(S[i].equalsIgnoreCase(word2))
                 l = i;
         }
-        System.out.println("Distance b/w word's is :" +(l-k));
+        logger.info("Distance b/w word's is :{}", l - k);
     }
 
     @Test (dataProvider = "stringSequenceCheckerDataProvider", dataProviderClass = DataProviderClass.class)
@@ -512,7 +516,7 @@ public class ConsecutiveOnes {
                         for (int k = i + 1; k <= arr.length - 1; k++) {
                             for (int l = j + 1; l <= seq.length - 1; l++) {
                                 if (arr[k].equalsIgnoreCase(seq[l])){
-                                    System.out.println("Sequence strings are : " +arr[i] + " " + arr[k]);
+                                    logger.info("Sequence strings are : {} {}", arr[i], arr[k]);
                                 //return;
                                     }
                             }
@@ -529,7 +533,7 @@ public class ConsecutiveOnes {
         while(i <= num)
         //for(int k = 1 ; k <= num ; k++)
         {
-            System.out.println(i);
+            logger.info(String.valueOf(i));
             temp = i+j;
             i = j;
             j = temp;
@@ -540,12 +544,12 @@ public class ConsecutiveOnes {
     public static void findLeadersInArray1(int[] arr) {
         // {42,65,3,78,56,12} -> 12,56,78
         int firstNum = arr[arr.length-1];
-        System.out.print("Leaders from right are : "+ firstNum);
+        logger.info("Leaders from right are : {}", firstNum);
         for(int i = arr.length-2; i >= 0 ; i-- )
         {
             if(arr[i] > firstNum){
                 firstNum = arr[i];
-                System.out.print(" "+firstNum);
+                logger.info(" {}", firstNum);
             }
         }
     }
@@ -564,7 +568,7 @@ public class ConsecutiveOnes {
                 }
             }
         }
-        System.out.println("Bubble Sort is : "+ Arrays.toString(arr));
+        logger.info("Bubble Sort is : {}", Arrays.toString(arr));
     }
 
     @Test (dataProvider = "runLengthEncodingDataProvider", dataProviderClass = DataProviderClass.class)
@@ -574,7 +578,7 @@ public class ConsecutiveOnes {
         int count = 1 ;
         StringBuilder builder = new StringBuilder();
 
-        System.out.println("Given String is : " + str);
+        logger.info("Given String is : " + str);
         for(int i = 1 ; i <= str.length() ; i++)
         {
             if(i < str.length() && str.charAt(i) == str.charAt(i-1))
@@ -590,7 +594,7 @@ public class ConsecutiveOnes {
                 count = 1;
             }
         }
-        System.out.println("Run Length Encoding is : " + builder);
+        logger.info("Run Length Encoding is : {}", builder);
     }
 
     @Test (dataProvider = "ReverseAlphabetDataProvider", dataProviderClass = DataProviderClass.class)
@@ -604,7 +608,7 @@ public class ConsecutiveOnes {
                  c = Character.isLowerCase(c) ? (char) ('z' - (c - 'a')) : (char) ('Z' - (c - 'A'));
             builder.append(c);
         }
-        System.out.println("Reverse Alphabet is : "+ builder.toString());
+        logger.info("Reverse Alphabet is : {}", builder.toString());
     }
 
     @Test (dataProvider = "ReverseAlphabetDataProvider", dataProviderClass = DataProviderClass.class)
@@ -618,7 +622,7 @@ public class ConsecutiveOnes {
         {
             builder.append(Character.isLowerCase(c) ? Character.toUpperCase(c) : Character.toLowerCase(c));
         }
-        System.out.println("Swapping Character is : "+ builder.toString());
+        logger.info("Swapping Character is : {}", builder.toString());
     }
 
     @Test (dataProvider = "checkStringCharactersAreEqualDataProvider", dataProviderClass = DataProviderClass.class)
@@ -629,7 +633,7 @@ public class ConsecutiveOnes {
         // Input: Sister,Resiss
         // Output: false
 
-        System.out.println("Given String is : " + str1 + " " + str2);
+        logger.info("Given String is : " + str1 + " " + str2);
         HashMap<Character, Integer> word1 = new HashMap<>();
         HashMap<Character, Integer> word2 = new HashMap<>();
 
@@ -640,9 +644,9 @@ public class ConsecutiveOnes {
             word2.put(c,word2.getOrDefault(c,0)+1);
 
         if(word1.equals(word2))
-            System.out.println("Strings are equal" + word1 + " " + word2);
+            logger.info("Strings are equal{} {}", word1, word2);
         else
-            System.out.println("Strings are Not equal" + word1 + " " + word2);
+            logger.info("Strings are Not equal{} {}", word1, word2);
     }
 
 
@@ -666,7 +670,7 @@ public class ConsecutiveOnes {
             pinCount.put(pinCode,pinCount.getOrDefault(pinCode,0)+1);
         }
 
-        System.out.println("Pin count map : " + pinCount);
+        logger.info("Pin count map : {}", pinCount);
 
         Map.Entry<String,Integer> maxEntry = null;
         int maxCount = 0;
@@ -677,7 +681,7 @@ public class ConsecutiveOnes {
                 maxCount = entry.getValue();
             }
         }
-        System.out.println("Max Occurrences of Pin Code is : " + maxEntry.getKey() + " - " + maxEntry.getValue());
+        logger.info("Max Occurrences of Pin Code is : {} - {}", maxEntry.getKey(), maxEntry.getValue());
     }
 
     @Test (dataProvider = "reverseNumberDataProvider", dataProviderClass = DataProviderClass.class)
@@ -690,7 +694,7 @@ public class ConsecutiveOnes {
             revNum = revNum * 10 + num % 10;
             num = num/10;
         }
-        System.out.println("Reverse Number is : " + revNum);
+        logger.info("Reverse Number is : {}", revNum);
     }
 
 
@@ -712,7 +716,7 @@ public class ConsecutiveOnes {
             sb.append(" ");
 
         }
-        System.out.println("Reverse Words is : " + sb.toString());
+        logger.info("Reverse Words is : {}", sb.toString());
     }
 
 
@@ -722,19 +726,19 @@ public class ConsecutiveOnes {
         for(int i =1; i <= num ; i++)
         {
             for(int j = 0 ; j <= num - i ; j++ )
-                System.out.print(" ");
+                logger.info(" ");
             for(int k = 0 ; k < i ; k++)
-                System.out.print(" *");
-            System.out.println();
+                logger.info(" *");
+            logger.info("\n");
         }
 
         for(int i = num -1 ; i >= 0 ; i--)
         {
             for(int j = 0 ; j <= num - i ; j++ )
-                System.out.print(" ");
+                logger.info(" ");
             for(int k = 0 ; k < i ; k++)
-                System.out.print(" *");
-            System.out.println();
+                logger.info(" *");
+            logger.info("\n");
         }
     }
 
@@ -742,7 +746,7 @@ public class ConsecutiveOnes {
     @Test (dataProvider = "swapAlternateCharsDataProvider", dataProviderClass = DataProviderClass.class)
     public static void swapAlternateChars1(String str){
         // abcdefgh -> hbfdecga
-        System.out.println("Given String is : "+ str);
+        logger.info("Given String is : "+ str);
 
         char[] arr = str.toCharArray();
         char temp ;
@@ -753,25 +757,24 @@ public class ConsecutiveOnes {
             arr[i] = arr[arr.length-1-i];
             arr[arr.length-1-i] = temp;
         }
-        System.out.println("Swapped Alternate Chars is : "+ String.valueOf(arr));
+        logger.info("Swapped Alternate Chars is : {}", String.valueOf(arr));
     }
 
     @Test
     public static void maximumLength(String str)
     {
         Scanner read = new Scanner(System.in);
-        System.out.println("Enter the mimimum value : ");
+        logger.info("Enter the mimimum value : ");
         int min = read.nextInt();
-        System.out.println("Enter the maximun value : ");
+        logger.info("Enter the maximun value : ");
         int max = read.nextInt();
         if(min > max)
         {
-            System.out.println("Invalid Input....");
+            logger.info("Invalid Input....");
         } else {
             Random random = new Random();
             int randomValue = random.nextInt(((max - min ) + 1) + min);
-            System.out.println("The random value b/w " + min + " and " + max + " is : "
-                    + randomValue);
+            logger.info("The random value b/w {} and {} is : {}", min, max, randomValue);
         }
     }
 
@@ -785,9 +788,9 @@ public class ConsecutiveOnes {
             if(Character.isDigit(c))
                 set.add(c - '0');
         }
-        System.out.println(set.toString());
-        System.out.println("Second Largest Digit is :");
-        System.out.println( set.size() >= 2 ? new ArrayList<>(set).get(1) : -1);
+        logger.info(set.toString());
+        logger.info("Second Largest Digit is :");
+        logger.info(String.valueOf(set.size() >= 2 ? new ArrayList<>(set).get(1) : -1));
     }
 
     @Test (dataProvider = "mergeTwoArraysDataProvider", dataProviderClass = DataProviderClass.class)
@@ -799,7 +802,7 @@ public class ConsecutiveOnes {
             arr[index++] = i;
         for(int j : arr2)
             arr[index++] = j;
-        System.out.println(Arrays.toString(arr));
+        logger.info(Arrays.toString(arr));
 
     }
 
@@ -824,9 +827,9 @@ public class ConsecutiveOnes {
         if (carry) {
             int[] newArr = new int[n + 1];
             newArr[0] = 1;
-            System.out.println(Arrays.toString(newArr));
+            logger.info(Arrays.toString(newArr));
         } else {
-            System.out.println(Arrays.toString(arr));
+            logger.info(Arrays.toString(arr));
         }
     }
 
@@ -838,7 +841,8 @@ public class ConsecutiveOnes {
              map.computeIfAbsent(list.get(i), k -> new ArrayList<>()).add(i);
          map.forEach((key,value) -> {
              if(value.size() > 1)
-             { System.out.println( key + " :" + value); }});
+             {
+                 logger.info("{} :{}", key, value); }});
     }
 
     @Test (dataProvider = "calculateTradeAmountsDataProvider", dataProviderClass = DataProviderClass.class)
@@ -857,7 +861,7 @@ public class ConsecutiveOnes {
                 break;
         }
         }
-        System.out.println(totalAmount);
+        logger.info(String.valueOf(totalAmount));
     }
 
     @Test (dataProvider = "duplicateWordsInStringDataProvider", dataProviderClass = DataProviderClass.class)
@@ -873,7 +877,7 @@ public class ConsecutiveOnes {
        for (Map.Entry<String, List<Integer>> entry : map.entrySet())
        {
            if(entry.getValue().size() > 1)
-               System.out.println(entry.getKey() + " : " + entry.getValue());
+               logger.info("{} : {}", entry.getKey(), entry.getValue());
        }
     }
 
@@ -902,7 +906,7 @@ public class ConsecutiveOnes {
         // remove last comma
         result.setLength(result.length() - 1);
 
-        System.out.println(result);
+        logger.info(String.valueOf(result));
     }
 
     //Given an integer array:
@@ -925,9 +929,9 @@ public class ConsecutiveOnes {
         }
 
         if (secondMax == Integer.MIN_VALUE) {
-            System.out.println("No second highest value");
+            logger.info("No second highest value");
         } else {
-            System.out.println("Second highest = " + secondMax);
+            logger.info("Second highest = {}", secondMax);
         }
     }
 
@@ -950,9 +954,9 @@ public class ConsecutiveOnes {
 
         // Print reversed array
         for (int num : arr) {
-            System.out.print(num + " ");
+            logger.info(num + " ");
         }
-        //System.out.println(Arrays.toString(arr));
+        //logger.info(Arrays.toString(arr));
     }
 
     //Given transaction data:
@@ -987,9 +991,9 @@ public class ConsecutiveOnes {
         }
 
         // Print unique valid transactions
-        System.out.println("Unique Transactions:");
+        logger.info("Unique Transactions:");
         for (String txn : uniqueTransactions) {
-            System.out.println(txn);
+            logger.info(txn);
         }
     }
 
@@ -1017,7 +1021,7 @@ public class ConsecutiveOnes {
         // Print only duplicates (appearing more than once)
         for (Map.Entry<String, List<Integer>> entry : positionMap.entrySet()) {
             if (entry.getValue().size() > 1) {
-                System.out.println(
+                logger.info(
                         entry.getKey() + " -> positions: " + entry.getValue()
                 );
             }
@@ -1054,7 +1058,7 @@ public class ConsecutiveOnes {
             }
         }
 
-        System.out.println("Final balance for Transaction ID "
+        logger.info("Final balance for Transaction ID "
                 + targetTransactionId + " = " + balance);
     }
 
@@ -1083,7 +1087,7 @@ public class ConsecutiveOnes {
 
         // Display result
         charCountMap.forEach((key, value) ->
-                System.out.println(key + " -> " + value)
+                logger.info(key + " -> " + value)
         );
     }
 
@@ -1104,8 +1108,8 @@ public class ConsecutiveOnes {
             }
         }
 
-        System.out.println("Min = " + min);
-        System.out.println("Max = " + max);
+        logger.info("Min = " + min);
+        logger.info("Max = " + max);
     }
 
     @Test (dataProvider = "isNumberPalindromeDataProvider", dataProviderClass = DataProviderClass.class)
@@ -1118,9 +1122,9 @@ public class ConsecutiveOnes {
             num = num/10;
         }
         if(reverseNum == actNum)
-            System.out.println("Given Number "+ actNum +" is Palindrome");
+            logger.info("Given Number "+ actNum +" is Palindrome");
         else
-            System.out.println("Given Number "+ reverseNum +" is not a Palindrome");
+            logger.info("Given Number "+ reverseNum +" is not a Palindrome");
     }
 
     @Test //(dataProvider = "mergeAndSortArrayDataProvider", dataProviderClass = DataProviderClass.class)
@@ -1139,13 +1143,13 @@ public class ConsecutiveOnes {
         Arrays.sort(arr3);
 
         // With duplicates
-        System.out.println("Merged Array with Duplicates :" + Arrays.toString(arr3));
+        logger.info("Merged Array with Duplicates :" + Arrays.toString(arr3));
 
         // With out duplicates
         Set<Integer> set = new TreeSet<>();
         for (int n :  arr3)
             set.add(n);
-        System.out.println("Merged Set without duplicates :" + set);
+        logger.info("Merged Set without duplicates :" + set);
     }
 
 
