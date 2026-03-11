@@ -1,8 +1,16 @@
 pipeline {
     agent {
             docker {
-                image 'maven:3.11.0-eclipse-temurin-17'
+                image 'maven:3.9.13-eclipse-temurin-17-noble'
+                args '-v /var/run/docker.sock:/var/run/docker.sock'
             }
+        }
+
+    environment {
+            // This maps your Jenkins credential to a variable
+            RP_UUID = credentials('reportportal-uuid')
+            RP_ENDPOINT = 'http://host.docker.internal:9090'
+            RP_PROJECT = 'your_project_name'
         }
 
     stages {
@@ -19,10 +27,23 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh 'mvn test'
+       stage('Test & Report') {
+           steps {
+                           // Pass the variables directly into the Maven command
+                           sh """
+                           mvn test \
+                           -Drp.endpoint=${RP_ENDPOINT} \
+                           -Drp.uuid=${RP_UUID} \
+                           -Drp.project=${RP_PROJECT} \
+                           -Drp.launch=Jenkins_Build_${BUILD_NUMBER}
+                           """
+                       }
+       }
+    }
+
+    post {
+            always {
+                junit '**/target/surefire-reports/*.xml'
             }
         }
-    }
 }
