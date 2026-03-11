@@ -25,7 +25,7 @@ pipeline {
           steps {
               // This checks if the token is valid by asking for project info
               sh """
-              curl -v -H "Authorization: Bearer ${RP_TOKEN}" \
+              curl -v -H "Authorization: Bearer ${RP_UUID}" \
               ${RP_ENDPOINT}/api/v1/project/automation_setup
               """
           }
