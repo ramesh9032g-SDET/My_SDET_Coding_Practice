@@ -4,6 +4,8 @@
         <classes>
             <class name="org.pratcticeOrg.Tests.Test.RestAssured.TestClass"/>
             <class name="org.pratcticeOrg.Tests.Test.practice.ConsecutiveOnes"/>
+            <class name="org.pratcticeOrg.Tests.Test.Tekion.ReverseStringTest"/>
+            <class name="org.pratcticeOrg.Tests.Test.SampleRestAssuredTest"/>
         </classes>
     </test>
 </suite>
