@@ -15,9 +15,16 @@ pipeline {
         jdk 'JDK17'
     }
 
+       stage('Verify') {
+           steps {
+               sh 'java -version'
+               sh 'mvn -version'
+           }
+       }
+
         stage('Build') {
             steps {
-                sh '/opt/homebrew/bin/mvn clean install'
+                sh 'mvn clean install'
             }
         }
 
