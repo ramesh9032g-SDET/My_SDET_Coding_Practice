@@ -10,7 +10,7 @@ pipeline {
             // This maps your Jenkins credential to a variable
             RP_UUID = credentials('reportportal-uuid')
             RP_ENDPOINT = 'http://host.docker.internal:9090'
-            RP_PROJECT = 'Automation_setup'
+            RP_PROJECT = 'superadmin_personal'
         }
 
     stages {
@@ -21,11 +21,15 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
+      stage('Debug Connection') {
+          steps {
+              // This checks if the token is valid by asking for project info
+              sh """
+              curl -v -H "Authorization: Bearer ${RP_TOKEN}" \
+              ${RP_ENDPOINT}/api/v1/project/automation_setup
+              """
+          }
+      }
 
        stage('Test & Report') {
            steps {
@@ -34,6 +38,7 @@ pipeline {
                            mvn test \
                            -Drp.endpoint=${RP_ENDPOINT} \
                            -Drp.api.key=${RP_UUID} \
+                           -Drp.uuid=${RP_UUID} \
                            -Drp.project=${RP_PROJECT} \
                            -Drp.launch=Jenkins_Build_${BUILD_NUMBER}
                            -Drp.enabled=true
